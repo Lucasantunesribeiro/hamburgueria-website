@@ -1,0 +1,36 @@
+@import url("styles/header.css");
+@import url("styles/menu-hamburguer.css");
+@import url("styles/apresentacao.css");
+@import url("styles/banner.css");
+@import url("styles/sobre.css");
+@import url("styles/footer.css");
+@import url("styles/equipe.css");
+@import url("styles/contato.css");
+
+
+:root {
+    --fonte-principal: #ffffff;
+    --cabecalho: #ffffff;
+    --fundo-cabecalho: rgb(51, 43, 43);
+    --fundo-cabecalho__2: rgb(32, 28, 28);
+    --footer: #E8B4B8;
+    --cinza-claro: #f0f0f0;
+    --cinza: linear-gradient(97.54deg, #e6e6e6, #f0f0f0);
+    --azul: #002F52;
+    --azul-hover:#607b92;
+    --azul-degrade: linear-gradient(97.54deg, #002F52 35.49%, #326589 165.37%);
+
+}
+
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+body {
+    font-family: "Poppins", sans-serif;
+    font-size: 14px;
+    overflow-x: hidden;
+}

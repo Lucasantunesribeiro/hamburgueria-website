@@ -1,0 +1,181 @@
+.apresentacao {
+  display: block;
+  align-items: center;
+  padding: 2em;
+}
+
+.apresentacao__titulo {
+  margin-top: 0.5em;
+  font-size: 20px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 800;
+  color: var(--azul);
+  background-color: var(--cinza-claro);
+  border-radius: 1em;
+  padding: 1em;
+}
+
+.apresentacao__texto {
+  background: var(--azul-degrade);
+  -webkit-background-clip: text;
+  /* Para navegadores baseados em WebKit (Chrome, Safari, etc.) */
+  background-clip: text;
+  color: transparent;
+  /* Torna o texto invisível, mas o degradê será visível através da propriedade background-clip */
+  line-height: 1.4em;
+  margin-top: 0.8em;
+  margin-left: 0.8em;
+}
+
+.apresentacao-ambiente {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  margin: 2em 0 2em 0;
+}
+
+.apresentacao__titulo-ambiente,
+.apresentacao__texto-ambiente {
+  position: absolute;
+  z-index: 2;
+  color: var(--azul);
+}
+
+.apresentacao__titulo-ambiente {
+  top: 0%;
+  margin-top: 0.8em;
+  font-size: 20px;
+  font-weight: 800;
+  background-color: var(--cinza-claro);
+  border-radius: 1em;
+  padding: 1em;
+}
+
+
+.apresentacao__texto-ambiente {
+  top: 40%;
+  left: 10%;
+  right: 10%;
+  margin-bottom: 20px;
+  font-weight: 500;
+  background-image: var(--cinza);
+  border-radius: 1em;
+  padding: 1em;
+  color: var(--azul);
+  line-height: 1.5em;
+}
+
+.apresentacao__texto-ambiente p {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.apresentacao-ambiente__celular {
+  width: 100%;
+  height: auto;
+  position: relative;
+  z-index: 1;
+  opacity: 0.5;
+}
+
+.apresentacao-ambiente__pc {
+  display: none;
+}
+
+@media screen and (min-width: 500px) {
+  .apresentacao-ambiente img {
+    margin-right: 15em;
+    width: 110%;
+  }
+}
+
+@media screen and (min-width: 700px) {
+  .apresentacao__titulo {
+    font-size: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .apresentacao__texto {
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .apresentacao__titulo-ambiente {
+    font-size: 30px;
+    padding: 2em;
+  }
+
+  .apresentacao__texto-ambiente {
+    font-size: 22px;
+    padding: 2em;
+  }
+
+  .apresentacao-ambiente__celular {
+    margin-right: 50em;
+    width: 100%;
+    padding-right: 10em;
+  }
+}
+
+@media screen and (min-width: 800px) {
+  .apresentacao-ambiente__celular {
+    padding-right: 30em;
+  }
+}
+
+@media screen and (min-width: 950px) {
+  .apresentacao-ambiente__celular {
+    padding-right: 40em;
+  }
+}
+
+
+@media screen and (min-width: 1200px) {
+  .apresentacao__titulo {
+    font-size: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .apresentacao__texto {
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 5em;
+    padding-right: 5em;
+    margin-top: 1.5em;
+    margin-bottom: 3em;
+  }
+
+  .apresentacao__titulo-ambiente {
+    font-size: 30px;
+    padding: 1em;
+    left: 42%;
+    margin-top: 1.5em;
+  }
+
+  .apresentacao__texto-ambiente {
+    font-size: 22px;
+    width: 20em;
+    height: 12em;
+    left: 38%;
+    margin-bottom: 3em;
+  }
+
+  .apresentacao-ambiente__celular {
+    display: none;
+  }
+
+  .apresentacao-ambiente__pc {
+    display: flex;
+    opacity: 0.5;
+  }
+}

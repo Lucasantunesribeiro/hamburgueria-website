@@ -1,0 +1,83 @@
+.banner__hero_celular {
+    width: 100vw;
+    max-width: 400%;
+}
+
+.banner {
+    position: relative;
+  }
+  
+  .banner-wrapper {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .overlay-button {
+    position: absolute;
+    top: 67%;
+    left: 31%;
+    transform: translate(-50%, -50%);
+    padding: 0.3em 0.6em;
+     background-color: #ffad01; 
+   /* background-image: var(--azul-degrade);*/
+    border: none;
+    color: #333; 
+  /* color: var(--cabecalho); */
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 2em;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1em;
+  }
+
+  .banner__hero_pc {
+    display: none;
+  }
+
+  @media screen and (min-width: 500px) {
+    .overlay-button {
+      padding: 0.5em 1em;
+    }
+  }
+
+  @media screen and (min-width: 700px) {
+    .overlay-button {
+      padding: 0.6em 1.2em;
+      font-size: 20px;
+    }
+  }
+
+
+
+  @media screen and (min-width: 1200px) {
+    .overlay-button {
+      font-size: 30px;  
+      top: 91%;
+    }
+
+    .banner__hero_celular{
+      display: none;
+    }
+
+    .banner__hero_pc {
+      display: flex;
+      width: 100vw;
+    }
+  }
+
+  @media screen and (min-width: 1400px) {
+    .overlay-button {
+      font-size: 36px;  
+      top: 80%;
+    }
+
+    .banner__celular{
+      display: none;
+    }
+
+    .banner__hero_pc{
+      display: flex;
+      width: 100vw;
+    }
+  }
+

@@ -1,0 +1,183 @@
+  .cabecalho {
+  background-color: var(--cabecalho);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+
+.container-contas {
+  display: flex;
+  align-items: center;
+}
+
+.container-contas img {
+  padding: 1em;
+}
+
+
+
+/*Barra de navegação 1 - barra de pesquisa */
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  background-color: var(--cinza-claro);
+  padding: 0.2em;
+  border-radius: 5px;
+  width: 100%;
+}
+
+.search-bar-logo,
+.search-bar-icon {
+  margin-right: 0.7em;
+}
+
+.search-bar-icon {
+  padding-left: 0.5em;
+}
+
+
+.search-bar-logo img {
+  height: 30px;
+}
+
+.search-bar-icon img {
+  height: 15px;
+}
+
+.search-bar-input {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  font-size: 14px;
+  width: 100%;
+}
+
+.search-bar-input:focus+.search-bar-logo,
+.search-bar-input:focus+.search-bar-icon {
+  display: none;
+}
+
+
+/*Barra de navegação 1 - Perfil e carrinho */
+
+
+.posbarra {
+  display: flex;
+  align-items: center;
+
+}
+
+.nav-return {
+  padding-left: 0.5em;
+}
+
+.nav-return img {
+  width: 5%;
+}
+
+.nav-cart img {
+  width: 5%;
+}
+
+.nav-cart {
+  padding-left: 30%;
+  justify-content: center;
+}
+
+.menu {
+  display: none;
+}
+
+@media screen and (min-width:800px) {
+
+  .search-bar {
+    width: 100%;
+    margin-right: 2em;
+  }
+
+
+  .search-bar-icon {
+    padding-left: 0.5em;
+  }
+
+
+  .search-bar-logo img {
+    height: 40px;
+  }
+
+  .search-bar-icon img {
+    height: 22px;
+  }
+
+  .search-bar-input {
+    border: none;
+    outline: none;
+    background-color: transparent;
+    font-size: 14px;
+    width: 100%;
+  }
+
+  .container-contas {
+    margin-right: 2em;
+    gap: 10px;
+  }
+}
+
+
+@media screen and (min-width:1200px) {
+  .menu {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2em;
+    margin-left: 2em;
+    padding: 3em;
+  }
+
+  .menu__item-pc {
+    font-size: 20px;
+    color: var(--azul);
+    text-decoration: none;
+    margin-right: 1.5em;
+    font-weight: 700;
+  }
+
+  .menu__item-pc:hover {
+    color: var(--azul-hover);
+  }
+
+  .search-bar {
+    width: 80%;
+    margin-right: 2em;
+  }
+
+
+  .search-bar-icon {
+    padding-left: 0.5em;
+  }
+
+
+  .search-bar-logo img {
+    height: 40px;
+  }
+
+  .search-bar-icon img {
+    height: 22px;
+  }
+
+  .search-bar-input {
+    border: none;
+    outline: none;
+    background-color: transparent;
+    font-size: 14px;
+    width: 100%;
+  }
+
+  .container-contas {
+    margin-right: 2em;
+    gap: 10px;
+  }
+
+}
