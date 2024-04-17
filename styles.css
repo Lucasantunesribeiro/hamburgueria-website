@@ -1067,7 +1067,7 @@ footer {
   display: block;
   position: fixed;
   top: 0;
-  left: -100%;
+  left: -130%;
   width: 300px;
   height: 100%;
   margin: 0;
@@ -1320,6 +1320,8 @@ footer {
 /* -- CARDÁPIO -- */
 
 .cardapio {
+  display: flex;
+  margin: 2em 4em;
   flex-direction: column;
   padding: 2em 2em;
   background-color: var(--cinza-claro);
@@ -1332,6 +1334,7 @@ footer {
   flex-direction: column;
   text-align: center;
   gap: 1.5em;
+  margin-top: 1em;
 }
 
 .cardapio__titulo_titulo {
@@ -1347,26 +1350,183 @@ footer {
 
 /* - Box - */
 
+.cardapio__container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 5em;
+}
+
 .cardapio__box {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
   gap: 5em;
-  margin: 5em 0;
+  margin: 1em 2em;
 }
 
 .cardapio__box-container {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 5em;
+  gap: 3em;
+  padding: 3em 2em;
   background-color: var(--azul-hover);
+  border-radius: 0.5em;
+}
+
+.cardapio__box_imagem img{
+  width: 500px;
+  height: auto;
 }
 
 .cardapio__box_titulo{
   display: flex;
+
+  flex-direction: column;
+  margin-top: 5em;
+  gap: 1em;
+}
+
+.cardapio__box_titulo_titulo{
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.cardapio__box_titulo_descricao{
+  font-size: 16px;
+}
+
+.cardapio__box_titulo_preco{
+  margin-top: 1em;
+  color: var(--fonte-principal);
+  font-weight: 700;
+}
+
+.cardapio__container__celular{
+  display: none;
+}
+
+@media screen and (min-width: 0px) and (max-width: 1200px) {
+  .cardapio {
+    display: flex;
+    margin: 2em;
+    flex-direction: column;
+    padding: 0.5em;
+    background: none;
+  }
+  
+  .cardapio__container{
+    display: none;
+  }
+
+  .cardapio__container__celular{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 2em;
+  }
+
+  .cardapio__box-container__celular {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 2em;
+    margin: 1em;
+  }
+
+  .cardapio__box_imagem__celular{
+    display: flex;
+    align-items: center ;
+    justify-content: center;
+    margin-top: 5em;
+  }
+
+  .cardapio__box-container__celular{
+    display: flex;
+    align-items: center ;
+    justify-content: center;
+    background-color: var(--azul-hover);
+  }
+
+  .cardapio__box-container__celular img{
+    width: 100%;
+  }
+
+  .cardapio__box_titulo__celular{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 3em;
+    margin-bottom: 1em;
+    text-align: center;
+    padding: 2em;
+  }
+
+  .cardapio__box_titulo_preco__celular{
+    margin-top: 1em;
+    color: var(--fonte-principal);
+    font-weight: 700;
+  }
+
+  .cardapio__box_titulo_titulo__celular{
+    font-size: 24px;
+    font-weight: 700;
+  }
+  
+  .cardapio__box_titulo_descricao__celular{
+    font-size: 13px;
+    text-align: center;
+  }
+
+
+
+
+}
+
+@media screen and (min-width: 1201px) and (max-width: 1500px) {
+  .cardapio__box img{
+    width: 110%;
+    height: auto;
+  }
+
+  .cardapio__box_imagem{
+    margin-top: 2em;
+  }
+}
+
+
+/* -- POLITICA DE PRIVACIDADE -- */ 
+
+.politica{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 5em 0;
+}
+
+.politica__container{
+  display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  gap: 1em;
+  gap:4em;
+}
+
+.politica__container__titulo{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--azul);
+}
+
+.politica__container__paragrafo{
+  color: var(--azul);
+  font-size: 15px;
+  padding: 0 1em;
+  text-align: center;
 }
