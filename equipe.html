@@ -1,36 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio</title>
+    <title>Equipe | Delicious Burger</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="reset.css">
-    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Poppins
-    :ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
-
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 </head>
-
-
-
-
 <body>
-    <header class="cabecalho">
-        <div class="menu">
-            <a class="menu__item-pc" href="index.html">Início</a>
-            <a class="menu__item-pc" href="sobre.html">Sobre</a>
-            <a class="menu__item-pc" href="equipe.html">Equipe</a>
-            <a class="menu__item-pc" href="contato.html">Contato</a>
-        </div>
+    <header class="site-header">
         <div class="hamburger-menu">
             <input id="menu__toggle" type="checkbox" />
             <label class="menu__btn" for="menu__toggle">
@@ -39,181 +22,95 @@
             <ul class="menu__box">
                 <li><a class="menu__item" href="index.html">Início</a></li>
                 <li><a class="menu__item" href="sobre.html">Sobre</a></li>
-                <li><a class="menu__item" href="equipe.html">Nossa Equipe</a></li>
+                <li><a class="menu__item active" href="equipe.html">Equipe</a></li>
+                <li><a class="menu__item" href="cardapio.html">Cardápio</a></li>
                 <li><a class="menu__item" href="contato.html">Contato</a></li>
             </ul>
         </div>
+        <nav class="desktop-menu">
+            <a class="desktop-menu__item" href="index.html">Início</a>
+            <a class="desktop-menu__item" href="sobre.html">Sobre</a>
+            <a class="desktop-menu__item active" href="equipe.html">Equipe</a>
+            <a class="desktop-menu__item" href="cardapio.html">Cardápio</a>
+            <a class="desktop-menu__item" href="contato.html">Contato</a>
+        </nav>
         <div class="search-bar">
             <div class="search-bar-logo">
-                <img src="Imagens/Hamburguer.svg" alt="Logo">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2" aria-label="Logo Hamburguer" role="img"><circle cx="16" cy="16" r="14" stroke-width="2.5"/><rect x="8" y="18" width="16" height="4" rx="2"/><ellipse cx="16" cy="14" rx="8" ry="4"/><ellipse cx="16" cy="11" rx="6" ry="2.5"/></svg>
             </div>
             <input type="text" class="search-bar-input" placeholder="Comidas, bebidas, sobremesas">
-            <div class="search-bar-icon">
-                <img src="Imagens/Lupa.svg" alt="Lupa">
-            </div>
+            <button class="search-bar-icon" aria-label="Buscar">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" aria-label="Buscar" role="img"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            </button>
         </div>
-        </div>
-        <div class="container-contas">
-            <a href="#" class="container__link">
-                <img src="Imagens/Usuario.svg" alt="Meu perfil" class="container__imagem">
+        <div class="header-icons">
+            <a href="#" class="header-icons__link" aria-label="Meu perfil">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2" aria-label="Perfil" role="img"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-7 8-7s8 3 8 7"/></svg>
             </a>
-            <a href="#" class="container__link">
-                <img src="Imagens/Compras.svg" alt="Carrinhos de compras" class="container__imagem">
+            <a href="#" class="header-icons__link" aria-label="Carrinho de compras">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2" aria-label="Carrinho" role="img"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
             </a>
-        </div>
         </div>
     </header>
 
-    <section class="equipe__celular">
-        <h1 class="equipe__titulo"> Nossa equipe </h1>
-        <div class="linha-horizontal"></div>
-        <div class="equipe__container">
-            <img class="equipe__imagem" src="Imagens/Lucas.jpg">
-        </div>
-        <div class="equipe__container-sobre">
-            <h2 class="equipe__container-titulo">Lucas Antunes</h2>
-            <p class="equipe__container-texto">Lucas Antunes, aos 17 anos, é um jovem talentoso que encontrou sua paixão
-                na cozinha da hamburgueria
-                local. Com habilidades culinárias surpreendentes e uma atitude trabalhadora, ele encanta os clientes
-                com hambúrgueres deliciosos. Sua determinação e entusiasmo tornam cada dia na hamburgueria uma
-                experiência saborosa e memorável para todos.</p>
-        </div>
-        <div class="linha-horizontal"></div>
-        <div class="equipe__container">
-            <img class="equipe__imagem" src="Imagens/Ryan.jpg">
-        </div>
-        <div class="equipe__container-sobre">
-            <h2 class="equipe__container-titulo">Ryan Figueredo</h2>
-            <p class="equipe__container-texto">Ryan Figueredo, aos 21 anos, é um membro dedicado da equipe da
-                hamburgueria, trazendo inovação e entusiasmo para a cozinha. Com sua habilidade excepcional na
-                preparação de hambúrgueres e sua atenção aos detalhes, ele encanta os clientes com suas criações
-                saborosas. Sua paixão pela culinária transforma cada refeição em uma experiência memorável e saborosa.
-            </p>
-        </div>
-        <div class="linha-horizontal"></div>
-        <div class="equipe__container">
-            <img class="equipe__imagem" src="Imagens/Thiago.jpg">
-        </div>
-        <div class="equipe__container-sobre">
-            <h2 class="equipe__container-titulo">Thiago Gomes</h2>
-            <p class="equipe__container-texto">Thiago Gomes, aos 20 anos, é um talentoso colaborador da equipe da
-                hamburgueria, trazendo criatividade e habilidade para a cozinha. Com sua paixão pela culinária e atenção
-                aos detalhes, ele surpreende os clientes com hambúrgueres deliciosos e inovadores. Sua dedicação e
-                entusiasmo tornam cada refeição uma experiência verdadeiramente saborosa.</p>
-        </div>
-        <div class="linha-horizontal"></div>
-        <div class="equipe__container">
-            <img class="equipe__imagem" src="Imagens/Vini.jpg">
-        </div>
-        <div class="equipe__container-sobre">
-            <h2 class="equipe__container-titulo">Vinícius Arruda</h2>
-            <p class="equipe__container-texto">Vinicius Arruda, aos 19 anos, é um talentoso membro da equipe da
-                hamburgueria, trazendo criatividade e energia para a cozinha. Com sua habilidade excepcional na
-                preparação de hambúrgueres e sua atitude positiva, ele cativa os clientes com seu carisma e sabor
-                inigualável. Sua paixão pela culinária transforma cada refeição em uma experiência verdadeiramente
-                deliciosa.</p>
-        </div>
-    </section>
-
-
-
-    <section class="equipe__pc">
-        <h1 class="equipe__titulo"> Nossa equipe </h1>
-        <div class="linha__equipe"></div>
-        <div class="equipe__container-pc">
-            <div>
-                <img class="equipe__imagem-pc" src="Imagens/Lucas.jpg">
-                <h2 class="equipe__container-titulo">Lucas Antunes</h2>
+    <main>
+        <section class="equipe-section pb-xl">
+            <div class="container">
+                <h1 class="page-title">Nossa Equipe</h1>
+                <p class="lead text-center">
+                    Somos movidos pela paixão em servir! Nossa equipe dedicada trabalha todos os dias para trazer até você a melhor experiência em hambúrgueres.
+                </p>
+                <p class="text-center">
+                    Conheça os rostos por trás da Delicious Burger, onde cada membro traz sua própria especialidade e amor pela culinária. Juntos, criamos um ambiente acolhedor e saboroso para todos os nossos clientes.
+                </p>
             </div>
-            <p class="equipe__container-texto">Lucas Antunes, aos 17 anos, é um jovem talentoso que encontrou sua
-                paixão
-                na cozinha da hamburgueria
-                local. Com habilidades culinárias surpreendentes e uma atitude trabalhadora, ele encanta os clientes
-                com hambúrgueres deliciosos. Sua determinação e entusiasmo tornam cada dia na hamburgueria uma
-                experiência saborosa e memorável para todos.</p>
-        </div>
-        <div class="linha__equipe"></div>
-        <div class="equipe__container-pc">
-            <div>
-                <img class="equipe__imagem-pc" src="Imagens/Ryan.jpg">
-                <h2 class="equipe__container-titulo">Ryan Figueredo</h2>
-            </div>
-            <p class="equipe__container-texto">Ryan Figueredo, aos 21 anos, é um membro dedicado da equipe da
-                hamburgueria, trazendo inovação e entusiasmo para a cozinha. Com sua habilidade excepcional na
-                preparação de hambúrgueres e sua atenção aos detalhes, ele encanta os clientes com suas criações
-                saborosas. Sua paixão pela culinária transforma cada refeição em uma experiência memorável e saborosa.
-            </p>
-        </div>
-        <div class="linha__equipe"></div>
-        <div class="equipe__container-pc">
-            <div>
-                <img class="equipe__imagem-pc" src="Imagens/Thiago.jpg">
-                <h2 class="equipe__container-titulo">Thiago Gomes</h2>
-            </div>
-            <p class="equipe__container-texto">Thiago Gomes, aos 20 anos, é um talentoso colaborador da equipe da
-                hamburgueria, trazendo criatividade e habilidade para a cozinha. Com sua paixão pela culinária e atenção
-                aos detalhes, ele surpreende os clientes com hambúrgueres deliciosos e inovadores. Sua dedicação e
-                entusiasmo tornam cada refeição uma experiência verdadeiramente saborosa.</p>
-        </div>
-        <div class="linha__equipe"></div>
-        <div class="equipe__container-pc">
-            <div>
-                <img class="equipe__imagem-pc" src="Imagens/Vini.jpg">
-                <h2 class="equipe__container-titulo">Vinicius Arruda</h2>
-            </div>
-            <p class="equipe__container-texto">Vinicius Arruda, aos 19 anos, é um talentoso membro da equipe da
-                hamburgueria, trazendo criatividade e energia para a cozinha. Com sua habilidade excepcional na
-                preparação de hambúrgueres e sua atitude positiva, ele cativa os clientes com seu carisma e sabor
-                inigualável. Sua paixão pela culinária transforma cada refeição em uma experiência verdadeiramente
-                deliciosa.</p>
-        </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
-
-
-
-
-
-
-
-
-    <section class="rodape">
-        <footer>
-            <div class="container-footer">
-                <div class="row-footer">
-                    <div class="footer-col">
-                        <h4>Empresa</h4>
-                        <ul>
-                            <li><a href="sobre.html"> Quem somos </a></li>
-                            <li><a href="cardapio.html"> nossos serviços </a></li>
-                            <li><a href="politica.html"> política de privacidade </a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-col">
-                        <h4>Se inscreva!</h4>
-                        <div class="form-sub">
-                            <form>
-                                <input type="email" placeholder="Digite o seu e-mail" required>
-                                <button>registre</button>
-                            </form>
-                        </div>
-
-                        <div class="medias-socias">
-                            <a href="https://www.facebook.com/profile.php?id=61558420986380" target="_blank"> <i class="fa fa-facebook"></i> </a>
-                            <a href="https://www.instagram.com/hamburgueriauva/" target="_blank"> <i class="fa fa-instagram"></i> </a>
-                            <a href="https://twitter.com/HamburgueriaUVA" target="_blank"> <i class="fa fa-twitter"></i> </a>
-                            <a href="https://www.linkedin.com/in/hamburgueria-uva-31b182304/" target="_blank"> <i class="fa fa-linkedin"></i> </a>
-                        </div>
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4 class="footer-col__title">Empresa</h4>
+                    <ul>
+                        <li class="footer-col__list-item"><a href="sobre.html" class="footer-col__link">Quem somos</a></li>
+                        <li class="footer-col__list-item"><a href="cardapio.html" class="footer-col__link">Nossos serviços</a></li>
+                        <li class="footer-col__list-item"><a href="politica.html" class="footer-col__link">Política de privacidade</a></li>
+                    </ul>
+                </div>
+                 <div class="footer-col">
+                    <h4 class="footer-col__title">Obter ajuda</h4>
+                     <ul>
+                        <li class="footer-col__list-item"><a href="#" class="footer-col__link">FAQ</a></li>
+                        <li class="footer-col__list-item"><a href="#" class="footer-col__link">Transporte</a></li>
+                        <li class="footer-col__list-item"><a href="#" class="footer-col__link">Devoluções</a></li>
+                        <li class="footer-col__list-item"><a href="#" class="footer-col__link">Status De Pedido</a></li>
+                        <li class="footer-col__list-item"><a href="#" class="footer-col__link">Opções De Pagamento</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4 class="footer-col__title">Se inscreva!</h4>
+                    <form class="form-sub">
+                        <input type="email" placeholder="Digite o seu e-mail" required>
+                        <button type="submit">Registre</button>
+                    </form>
+                    <div class="social-media">
+                        <a href="https://www.facebook.com/profile.php?id=61558420986380" target="_blank" class="social-media__link" aria-label="Facebook">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="22" height="22"><path d="M17 2.1h-3.2C9.6 2.1 8 3.7 8 6.2v2.1H5.5a.5.5 0 0 0-.5.5v3.1c0 .3.2.5.5.5H8v8.1c0 .3.2.5.5.5h3.2c.3 0 .5-.2.5-.5v-8.1h2.2c.3 0 .5-.2.5-.5l.1-3.1a.5.5 0 0 0-.5-.5h-2.3V6.3c0-.5.1-.7.7-.7h1.6c.3 0 .5-.2.5-.5V2.6a.5.5 0 0 0-.5-.5z"/></svg>
+                        </a>
+                        <a href="https://www.instagram.com/hamburgueriauva/" target="_blank" class="social-media__link" aria-label="Instagram">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="22" height="22"><rect width="18" height="18" x="3" y="3" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.5"/></svg>
+                        </a>
+                        <a href="https://twitter.com/HamburgueriaUVA" target="_blank" class="social-media__link" aria-label="Twitter">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="22" height="22"><path d="M22 5.8c-.8.4-1.6.7-2.5.8a4.3 4.3 0 0 0 1.9-2.4c-.8.5-1.7.9-2.6 1.1A4.2 4.2 0 0 0 12 9.5c0 .3 0 .6.1.9C8.1 10.2 4.6 8.3 2.3 5.4c-.4.7-.6 1.5-.6 2.3 0 1.6.8 3 2.1 3.8-.7 0-1.4-.2-2-.5v.1c0 2.2 1.6 4 3.7 4.4-.4.1-.8.2-1.2.2-.3 0-.6 0-.8-.1.6 1.8 2.3 3.1 4.3 3.1A8.5 8.5 0 0 1 2 19.5c-.3 0-.6 0-.8-.1A12 12 0 0 0 8.3 21c7.5 0 11.6-6.2 11.6-11.6v-.5c.8-.6 1.5-1.3 2-2.1z"/></svg>
+                        </a>
+                        <a href="https://www.linkedin.com/in/hamburgueria-uva-31b182304/" target="_blank" class="social-media__link" aria-label="LinkedIn">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="22" height="22"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M7 10v7M7 7v.01M12 10v7m0-7c0-1.1.9-2 2-2s2 .9 2 2v7"/></svg>
+                        </a>
                     </div>
                 </div>
             </div>
-        </footer>
-    </section>
-
-
-
-
+        </div>
+    </footer>
 </body>
-
 </html>
