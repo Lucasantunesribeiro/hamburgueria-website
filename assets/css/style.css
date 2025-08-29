@@ -300,23 +300,6 @@ body {
     padding: 0 1.5rem 1rem;
 }
 
-.menu-item-card__button {
-    background: var(--secondary-color);
-    color: var(--text-light);
-    border: none;
-    padding: 1rem;
-    width: 100%;
-    font-family: var(--font-primary);
-    font-weight: 600;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: var(--transition);
-}
-
-.menu-item-card__button:hover {
-    background: var(--accent-color);
-}
-
 /* -------------------
    6. About & Contact Pages
    ------------------- */
@@ -650,4 +633,86 @@ body {
     margin-left: 1rem;
     font-size: 1.2rem;
     cursor: pointer;
+}
+
+
+/* -------------------
+   10. Buttons
+   ------------------- */
+.btn {
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-family: var(--font-primary);
+    font-weight: 600;
+    font-size: 1rem;
+    transition: var(--transition);
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: var(--text-light) !important;
+}
+
+.btn-primary:hover {
+    background-color: #c8903a;
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background-color: var(--secondary-color);
+    color: var(--text-light);
+}
+
+.btn-secondary:hover {
+    background-color: var(--accent-color);
+    transform: translateY(-2px);
+}
+
+.cart-modal-footer .btn {
+    width: 100%;
+    margin-bottom: 0.75rem;
+}
+
+.cart-modal-footer .btn:last-child {
+    margin-bottom: 0;
+}
+
+.clear-cart-btn {
+    background-color: #777;
+    color: var(--text-light);
+}
+.clear-cart-btn:hover {
+    background-color: var(--secondary-color);
+}
+
+.quantity-btn-plus, .quantity-btn-minus, .remove-btn {
+    background-color: #eee;
+    border: 1px solid #ddd;
+    color: var(--text-color);
+    cursor: pointer;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    transition: var(--transition);
+}
+
+.quantity-btn-plus:hover, .quantity-btn-minus:hover {
+    background-color: #ddd;
+}
+
+.remove-btn {
+    background-color: transparent;
+    color: var(--accent-color);
+    border: none;
+    font-size: 1.2rem;
+    margin-left: 0.5rem;
+}
+
+.remove-btn:hover {
+    color: #8c2222;
+    transform: scale(1.1);
 }
