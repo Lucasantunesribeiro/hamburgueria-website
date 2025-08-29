@@ -180,6 +180,34 @@ class CartModal {
         this.createModal();
     }
 
+    initEventListeners() {
+        const cartIcon = document.querySelector('.header-icon[aria-label*="carrinho"]');
+        if (cartIcon) {
+            cartIcon.addEventListener('click', (e) => {
+                e.preventDefault();
+                this.open();
+            });
+        }
+        this.modal.querySelector('.cart-modal-close').addEventListener('click', () => this.close());
+        this.modal.querySelector('.cart-modal-overlay').addEventListener('click', () => this.close());
+        this.modal.querySelector('.clear-cart-btn').addEventListener('click', () => this.clearCart());
+        this.modal.querySelector('.checkout-btn').addEventListener('click', () => this.checkout());
+        this.modal.querySelector('.cart-items').addEventListener('click', (e) => {
+            const target = e.target;
+            const itemKey = target.dataset.itemKey;
+            if (!itemKey || !this.appState.cart[itemKey]) return;
+
+            if (target.classList.contains('quantity-btn-plus')) {
+                this.appState.updateCartQuantity(itemKey, this.appState.cart[itemKey].quantity + 1);
+            } else if (target.classList.contains('quantity-btn-minus')) {
+                this.appState.updateCartQuantity(itemKey, this.appState.cart[itemKey].quantity - 1);
+            } else if (target.classList.contains('remove-btn')) {
+                this.appState.removeFromCart(itemKey);
+            }
+            this.update();
+        });
+    }
+
     createModal() {
         this.modal = document.createElement('div');
         this.modal.className = 'cart-modal';
@@ -198,10 +226,13 @@ class CartModal {
     }
 
     initEventListeners() {
-        document.querySelector('.header-icon[aria-label*="carrinho"]').addEventListener('click', (e) => {
-            e.preventDefault();
-            this.open();
-        });
+        const cartIcon = document.querySelector('.header-icon[aria-label*="carrinho"]');
+        if (cartIcon) {
+            cartIcon.addEventListener('click', (e) => {
+                e.preventDefault();
+                this.open();
+            });
+        }
         this.modal.querySelector('.cart-modal-close').addEventListener('click', () => this.close());
         this.modal.querySelector('.cart-modal-overlay').addEventListener('click', () => this.close());
         this.modal.querySelector('.clear-cart-btn').addEventListener('click', () => this.clearCart());
@@ -210,9 +241,13 @@ class CartModal {
             const target = e.target;
             const itemKey = target.dataset.itemKey;
             if (target.classList.contains('quantity-btn-plus')) {
-                this.appState.updateCartQuantity(itemKey, this.appState.cart[itemKey].quantity + 1);
+                if (this.appState.cart[itemKey]) {
+                    this.appState.updateCartQuantity(itemKey, this.appState.cart[itemKey].quantity + 1);
+                }
             } else if (target.classList.contains('quantity-btn-minus')) {
-                this.appState.updateCartQuantity(itemKey, this.appState.cart[itemKey].quantity - 1);
+                if (this.appState.cart[itemKey]) {
+                    this.appState.updateCartQuantity(itemKey, this.appState.cart[itemKey].quantity - 1);
+                }
             } else if (target.classList.contains('remove-btn')) {
                 this.appState.removeFromCart(itemKey);
             }
@@ -256,16 +291,27 @@ class MenuSearch {
     constructor(app, renderCallback) {
         this.appState = app.appState;
         this.renderCallback = renderCallback;
+        this.searchContainer = null;
+        this.searchInput = null;
+        this.searchOpenBtn = null;
+        this.searchCloseBtn = null;
+    }
+
+    init() {
         this.searchContainer = document.getElementById('search-container');
         this.searchInput = document.getElementById('search-input');
         this.searchOpenBtn = document.querySelector('.header-icon[aria-label*="busca"]');
         this.searchCloseBtn = document.getElementById('search-close-btn');
-    }
 
-    init() {
-        this.searchOpenBtn.addEventListener('click', (e) => { e.preventDefault(); this.open(); });
-        this.searchCloseBtn.addEventListener('click', () => this.close());
-        this.searchInput.addEventListener('input', this.debounce((e) => this.performSearch(e.target.value), 300));
+        if (this.searchOpenBtn) {
+            this.searchOpenBtn.addEventListener('click', (e) => { e.preventDefault(); this.open(); });
+        }
+        if (this.searchCloseBtn) {
+            this.searchCloseBtn.addEventListener('click', () => this.close());
+        }
+        if (this.searchInput) {
+            this.searchInput.addEventListener('input', this.debounce((e) => this.performSearch(e.target.value), 300));
+        }
     }
 
     open() { this.searchContainer.classList.add('active'); this.searchInput.focus(); }
