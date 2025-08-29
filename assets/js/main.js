@@ -75,6 +75,7 @@ class AppState {
       return stored ? JSON.parse(stored) : {};
     } catch (error) {
       console.error('Error loading cart:', error);
+      localStorage.removeItem('deliciousBurgerCart');
       return {};
     }
   }
@@ -180,34 +181,6 @@ class CartModal {
         this.createModal();
     }
 
-    initEventListeners() {
-        const cartIcon = document.querySelector('.header-icon[aria-label*="carrinho"]');
-        if (cartIcon) {
-            cartIcon.addEventListener('click', (e) => {
-                e.preventDefault();
-                this.open();
-            });
-        }
-        this.modal.querySelector('.cart-modal-close').addEventListener('click', () => this.close());
-        this.modal.querySelector('.cart-modal-overlay').addEventListener('click', () => this.close());
-        this.modal.querySelector('.clear-cart-btn').addEventListener('click', () => this.clearCart());
-        this.modal.querySelector('.checkout-btn').addEventListener('click', () => this.checkout());
-        this.modal.querySelector('.cart-items').addEventListener('click', (e) => {
-            const target = e.target;
-            const itemKey = target.dataset.itemKey;
-            if (!itemKey || !this.appState.cart[itemKey]) return;
-
-            if (target.classList.contains('quantity-btn-plus')) {
-                this.appState.updateCartQuantity(itemKey, this.appState.cart[itemKey].quantity + 1);
-            } else if (target.classList.contains('quantity-btn-minus')) {
-                this.appState.updateCartQuantity(itemKey, this.appState.cart[itemKey].quantity - 1);
-            } else if (target.classList.contains('remove-btn')) {
-                this.appState.removeFromCart(itemKey);
-            }
-            this.update();
-        });
-    }
-
     createModal() {
         this.modal = document.createElement('div');
         this.modal.className = 'cart-modal';
@@ -240,14 +213,12 @@ class CartModal {
         this.modal.querySelector('.cart-items').addEventListener('click', (e) => {
             const target = e.target;
             const itemKey = target.dataset.itemKey;
+            if (!itemKey || !this.appState.cart[itemKey]) return;
+
             if (target.classList.contains('quantity-btn-plus')) {
-                if (this.appState.cart[itemKey]) {
-                    this.appState.updateCartQuantity(itemKey, this.appState.cart[itemKey].quantity + 1);
-                }
+                this.appState.updateCartQuantity(itemKey, this.appState.cart[itemKey].quantity + 1);
             } else if (target.classList.contains('quantity-btn-minus')) {
-                if (this.appState.cart[itemKey]) {
-                    this.appState.updateCartQuantity(itemKey, this.appState.cart[itemKey].quantity - 1);
-                }
+                this.appState.updateCartQuantity(itemKey, this.appState.cart[itemKey].quantity - 1);
             } else if (target.classList.contains('remove-btn')) {
                 this.appState.removeFromCart(itemKey);
             }
@@ -399,11 +370,11 @@ class App {
         const menuData = await fetchMenuData();
         this.appState.setMenuData(menuData);
         
-        this.initAddToCartButtons();
-
         if (document.querySelector('.menu-grid')) {
             this.renderMenu(this.appState.menuData);
         }
+
+        this.initAddToCartButtons();
     }
     
     renderMenu(items) {
@@ -421,7 +392,7 @@ class App {
                 </div>
                 <div class="menu-item-card-footer">
                     <span class="menu-item-card__price">R$ ${item.price.toFixed(2)}</span>
-                    <button class="btn btn-secondary add-to-cart" data-item-id="${item.id}">Adicionar</button>
+                    <button class="btn btn-secondary add-to-cart" data-item-id="${item.id}">Pedir agora</button>
                 </div>`;
             container.appendChild(itemEl);
         });
