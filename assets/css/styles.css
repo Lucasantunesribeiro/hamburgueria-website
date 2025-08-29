@@ -1,0 +1,58 @@
+/* 12. Centralized Styles from HTML */
+
+/* Index Page Banner */
+.banner-wrapper {
+    position: relative; /* This was an inline style */
+}
+.banner-img {
+    width: 100%;
+    height: 420px;
+    object-fit: cover;
+}
+
+/* Contact Page Form */
+.contact-form {
+    max-width: 500px;
+    margin: 2rem auto 0 auto;
+}
+
+/* Equipe Page Placeholders */
+.equipe__container {
+    margin-top: 3rem;
+}
+.equipe-placeholder-img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin: 0 auto 1rem;
+    object-fit: cover;
+}
+.equipe-placeholder-title {
+    font-size: 1.5rem;
+    color: var(--text-main);
+}
+.equipe-placeholder-role {
+    font-size: 1rem;
+    color: var(--accent-primary);
+}
+
+/* Politica de Privacidade Page */
+.policy-container {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+.text-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+.text-content h3 {
+    margin-top: 2rem;
+}
+.text-content ul {
+    list-style: disc;
+    padding-left: 2rem;
+    margin-bottom: 1rem;
+}
+.text-content .effective-date {
+    margin-top: 1rem;
+}
