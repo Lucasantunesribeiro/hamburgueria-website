@@ -1,0 +1,653 @@
+/*
+  Project: Delicious Burger
+  Author: Jules
+  Version: 2.0 (Refactored)
+*/
+
+/* -------------------
+   1. Global Styles & Variables
+   ------------------- */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Roboto:wght@400;500&display=swap');
+
+:root {
+  --primary-color: #D9A24B; /* Golden Yellow */
+  --secondary-color: #2E2E2E; /* Dark Charcoal */
+  --accent-color: #A62929; /* Deep Red */
+  --background-color: #F8F8F8; /* Light Gray */
+  --text-color: #333;
+  --text-light: #fff;
+  --font-primary: 'Poppins', sans-serif;
+  --font-secondary: 'Roboto', sans-serif;
+  --border-radius: 12px;
+  --shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  --transition: all 0.3s ease-in-out;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-secondary);
+  background-color: var(--background-color);
+  color: var(--text-color);
+  line-height: 1.7;
+}
+
+.container {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* -------------------
+   2. Header & Navigation
+   ------------------- */
+
+.site-header {
+  background: var(--text-light);
+  padding: 1rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  transition: var(--transition);
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-family: var(--font-primary);
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--secondary-color);
+  text-decoration: none;
+}
+
+.desktop-nav .desktop-menu {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+}
+
+.desktop-menu__item {
+  color: var(--secondary-color);
+  font-family: var(--font-primary);
+  font-weight: 600;
+  text-decoration: none;
+  padding-bottom: 5px;
+  position: relative;
+  transition: var(--transition);
+}
+
+.desktop-menu__item::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 3px;
+  background: var(--primary-color);
+  transition: var(--transition);
+}
+
+.desktop-menu__item:hover,
+.desktop-menu__item.active {
+  color: var(--primary-color);
+}
+
+.desktop-menu__item:hover::after,
+.desktop-menu__item.active::after {
+  width: 100%;
+}
+
+.header-icons {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.header-icon {
+  font-size: 1.3rem;
+  color: var(--secondary-color);
+  text-decoration: none;
+  position: relative;
+}
+
+.cart-count {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background: var(--accent-color);
+  color: var(--text-light);
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.8rem;
+  font-weight: bold;
+  border: 2px solid var(--text-light);
+}
+
+.mobile-menu-toggle, .mobile-nav {
+  display: none;
+}
+
+
+/* -------------------
+   3. Hero Section (Home Page)
+   ------------------- */
+
+.banner-section {
+  padding: 4rem 0;
+}
+
+.banner-wrapper {
+  position: relative;
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.banner-img {
+  width: 100%;
+  height: 550px;
+  object-fit: cover;
+  display: block;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to right, rgba(0,0,0,0.7), rgba(0,0,0,0.2));
+  color: var(--text-light);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 4rem;
+}
+
+.hero-title {
+  font-family: var(--font-primary);
+  font-size: 3.5rem;
+  max-width: 500px;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+.hero-subtitle {
+  font-size: 1.2rem;
+  max-width: 450px;
+  margin-bottom: 2rem;
+}
+
+.overlay-button {
+  background: var(--primary-color);
+  color: var(--text-light);
+  padding: 1rem 2.5rem;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 700;
+  font-family: var(--font-primary);
+  transition: var(--transition);
+  box-shadow: 0 4px 10px rgba(217, 162, 75, 0.4);
+}
+
+.overlay-button:hover {
+  background: #c8903a;
+  transform: translateY(-3px);
+}
+
+/* -------------------
+   4. Info Cards
+   ------------------- */
+.info-cards-section {
+    padding: 4rem 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+.card {
+    background: var(--text-light);
+    border-radius: var(--border-radius);
+    padding: 2rem;
+    text-align: center;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+}
+
+.card:hover {
+    transform: translateY(-10px);
+}
+
+.card-title {
+    font-family: var(--font-primary);
+    font-size: 1.5rem;
+    color: var(--secondary-color);
+    margin-bottom: 1rem;
+}
+
+/* -------------------
+   5. Menu Page
+   ------------------- */
+.page-title {
+    font-family: var(--font-primary);
+    font-size: 2.8rem;
+    text-align: center;
+    margin: 3rem 0;
+    color: var(--secondary-color);
+}
+
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2.5rem;
+    padding-bottom: 4rem;
+}
+
+.menu-item-card {
+    background: var(--text-light);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    transition: var(--transition);
+}
+
+.menu-item-card:hover {
+    transform: scale(1.03);
+}
+
+.menu-item-card__image {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
+
+.menu-item-card__name {
+    font-family: var(--font-primary);
+    font-size: 1.4rem;
+    padding: 1rem 1.5rem 0.5rem;
+}
+
+.menu-item-card__description {
+    padding: 0 1.5rem;
+    flex-grow: 1;
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+    color: #666;
+}
+
+.menu-item-card__price {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    padding: 0 1.5rem 1rem;
+}
+
+.menu-item-card__button {
+    background: var(--secondary-color);
+    color: var(--text-light);
+    border: none;
+    padding: 1rem;
+    width: 100%;
+    font-family: var(--font-primary);
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.menu-item-card__button:hover {
+    background: var(--accent-color);
+}
+
+/* -------------------
+   6. About & Contact Pages
+   ------------------- */
+.sobre-section, .contato-section, .policy-container {
+    padding: 4rem 0;
+}
+
+.sobre-section-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 3rem;
+    align-items: center;
+}
+
+.sobre-image {
+    width: 100%;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+}
+
+.missao-box {
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    margin-top: 2rem;
+    border-left: 5px solid var(--primary-color);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.contact-card__icon svg {
+    color: var(--primary-color);
+}
+
+.contact-form {
+    background: #fff;
+    padding: 3rem;
+    border-radius: var(--border-radius);
+    max-width: 700px;
+    margin: 2rem auto;
+    box-shadow: var(--shadow);
+}
+
+.form-input {
+    width: 100%;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    font-size: 1rem;
+}
+
+.btn-primary {
+    width: 100%;
+    padding: 1rem;
+    background: var(--primary-color);
+    color: var(--text-light);
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.btn-primary:hover {
+    background: var(--accent-color);
+}
+
+/* -------------------
+   7. Footer
+   ------------------- */
+.site-footer {
+    background: var(--secondary-color);
+    color: #ccc;
+    padding-top: 3rem;
+}
+
+.footer-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    padding-bottom: 3rem;
+}
+
+.footer-title {
+    font-family: var(--font-primary);
+    font-size: 1.3rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.footer-links li {
+    margin-bottom: 0.75rem;
+}
+
+.footer-links a {
+    color: #ccc;
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.footer-links a:hover {
+    color: var(--primary-color);
+    padding-left: 5px;
+}
+
+.social-icons a {
+    color: #ccc;
+    font-size: 1.5rem;
+    margin-right: 1rem;
+    transition: var(--transition);
+}
+
+.social-icons a:hover {
+    color: var(--primary-color);
+    transform: scale(1.2);
+}
+
+.footer-bottom {
+    background: #222;
+    text-align: center;
+    padding: 1.5rem 0;
+    color: #888;
+    font-size: 0.9rem;
+}
+
+/* -------------------
+   8. Search Bar
+   ------------------- */
+
+.search-bar-container {
+    background-color: #f0f0f0;
+    padding: 1rem 0;
+    display: none; /* Hidden by default */
+}
+
+.search-bar-container.active {
+    display: block;
+}
+
+.search-bar-container .container {
+    display: flex;
+    align-items: center;
+}
+
+#search-input {
+    width: 100%;
+    padding: 0.8rem;
+    font-size: 1.1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+#search-close-btn {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    margin-left: 1rem;
+    cursor: pointer;
+    color: var(--secondary-color);
+}
+
+
+/* -------------------
+   9. Modals & Notifications
+   ------------------- */
+
+/* Cart Modal */
+.cart-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2000;
+  display: flex;
+  justify-content: flex-end;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0.3s, opacity 0.3s;
+}
+
+.cart-modal.active {
+  visibility: visible;
+  opacity: 1;
+}
+
+.cart-modal-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+}
+
+.cart-modal-content {
+  position: relative;
+  width: 100%;
+  max-width: 450px;
+  background: #fff;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  transform: translateX(100%);
+  transition: transform 0.3s ease-in-out;
+}
+
+.cart-modal.active .cart-modal-content {
+  transform: translateX(0);
+}
+
+.cart-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  border-bottom: 1px solid #eee;
+}
+
+.cart-modal-header h2 {
+  margin: 0;
+}
+
+.cart-modal-close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.cart-modal-body {
+  padding: 1.5rem;
+  flex-grow: 1;
+  overflow-y: auto;
+}
+
+.cart-items .empty-cart {
+  text-align: center;
+  padding: 3rem 0;
+  color: #777;
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 1rem;
+}
+
+.cart-item-info h4 {
+  margin-bottom: 0.25rem;
+}
+
+.cart-item-price {
+  color: var(--primary-color);
+  font-weight: bold;
+}
+
+.cart-item-controls {
+  display: flex;
+  align-items: center;
+}
+
+.cart-item-controls .quantity {
+  margin: 0 0.5rem;
+}
+
+.cart-modal-footer {
+  padding: 1.5rem;
+  border-top: 1px solid #eee;
+}
+
+.cart-total {
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+.cart-total-row {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Notification */
+.notification {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    color: var(--text-light);
+    z-index: 3000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s ease;
+}
+
+.notification.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
+.notification.success {
+    background-color: #4CAF50; /* Green */
+}
+
+.notification.error {
+    background-color: var(--accent-color); /* Red */
+}
+
+.notification-content {
+    display: flex;
+    align-items: center;
+}
+
+.notification-close {
+    background: none;
+    border: none;
+    color: var(--text-light);
+    margin-left: 1rem;
+    font-size: 1.2rem;
+    cursor: pointer;
+}

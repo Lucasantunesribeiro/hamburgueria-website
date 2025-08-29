@@ -1,0 +1,69 @@
+[
+  {
+    "id": "burger-classico",
+    "name": "Burger Clássico",
+    "description": "Pão brioche, blend Angus 180g, queijo prato, alface, tomate, maionese da casa.",
+    "price": 29.90,
+    "category": "burgers",
+    "image": "assets/chess-burger.jpg",
+    "ingredients": ["pão brioche", "blend angus", "queijo prato", "alface", "tomate", "maionese"],
+    "popular": true
+  },
+  {
+    "id": "burger-bacon",
+    "name": "Burger Bacon",
+    "description": "Pão australiano, blend Angus 180g, queijo cheddar, bacon crocante, cebola caramelizada.",
+    "price": 34.90,
+    "category": "burgers",
+    "image": "assets/Xbacon.jpg",
+    "ingredients": ["pão australiano", "blend angus", "queijo cheddar", "bacon", "cebola caramelizada"],
+    "popular": true
+  },
+  {
+    "id": "burger-veggie",
+    "name": "Burger Veggie",
+    "description": "Pão integral, burger de grão-de-bico, queijo minas, rúcula, tomate, maionese vegana.",
+    "price": 27.90,
+    "category": "burgers",
+    "image": "assets/receita-de-x-tudo.jpg",
+    "ingredients": ["pão integral", "burger grão-de-bico", "queijo minas", "rúcula", "tomate", "maionese vegana"],
+    "vegetarian": true
+  },
+  {
+    "id": "burger-duplo",
+    "name": "Burger Duplo",
+    "description": "Pão brioche, 2x blend Angus 180g, queijo cheddar duplo, bacon, picles especiais.",
+    "price": 42.90,
+    "category": "burgers",
+    "image": "assets/chess-burger.jpg",
+    "ingredients": ["pão brioche", "duplo blend angus", "queijo cheddar duplo", "bacon", "picles"],
+    "popular": true
+  },
+  {
+    "id": "batata-rustica",
+    "name": "Batata Rústica",
+    "description": "Batatas cortadas à mão, tempero especial da casa, maionese artesanal.",
+    "price": 16.90,
+    "category": "acompanhamentos",
+    "image": "assets/chess-burger.jpg",
+    "ingredients": ["batata rústica", "tempero especial", "maionese artesanal"]
+  },
+  {
+    "id": "refrigerante",
+    "name": "Refrigerantes",
+    "description": "Coca-Cola, Pepsi, Guaraná Antarctica, Sprite - 350ml gelado.",
+    "price": 6.90,
+    "category": "bebidas",
+    "image": "assets/chess-burger.jpg",
+    "ingredients": ["coca-cola", "pepsi", "guaraná", "sprite"]
+  },
+  {
+    "id": "milkshake-chocolate",
+    "name": "Milkshake Chocolate",
+    "description": "Sorvete cremoso de baunilha, calda de chocolate, chantilly e granulado.",
+    "price": 18.90,
+    "category": "sobremesas",
+    "image": "assets/chess-burger.jpg",
+    "ingredients": ["sorvete baunilha", "calda chocolate", "chantilly", "granulado"]
+  }
+]
