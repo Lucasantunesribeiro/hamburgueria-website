@@ -1,7 +1,8 @@
 <header class="site-header">
     <div class="container header-container">
-        <a href="index.html" class="logo">Delicious Burger</a>
-        <nav class="desktop-nav">
+        <a href="index.html" class="logo" aria-label="Delicious Burger - Página inicial">Delicious Burger</a>
+        
+        <nav class="desktop-nav" aria-label="Navegação principal">
             <ul class="desktop-menu">
                 <li><a href="index.html" class="desktop-menu__item">Início</a></li>
                 <li><a href="cardapio.html" class="desktop-menu__item">Cardápio</a></li>
@@ -9,28 +10,31 @@
                 <li><a href="contato.html" class="desktop-menu__item">Contato</a></li>
             </ul>
         </nav>
+        
         <div class="header-icons">
-            <a href="#" class="header-icon" aria-label="Abrir busca">
-                <i class="fas fa-search"></i>
+            <a href="#" class="header-icon" aria-label="Abrir busca no cardápio">
+                <i class="fas fa-search" aria-hidden="true"></i>
             </a>
             <a href="#" class="header-icon" aria-label="Ver seu carrinho de compras">
-                <i class="fas fa-shopping-cart"></i>
-                <span id="cart-count" class="cart-count">0</span>
+                <i class="fas fa-shopping-cart" aria-hidden="true"></i>
+                <span id="cart-count" class="cart-count" aria-live="polite">0</span>
             </a>
-            <button class="mobile-menu-toggle" aria-label="Abrir menu" aria-expanded="false">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
+            <button class="mobile-menu-toggle" aria-label="Abrir menu de navegação" aria-expanded="false" aria-controls="mobile-nav">
+                <span class="bar" aria-hidden="true"></span>
+                <span class="bar" aria-hidden="true"></span>
+                <span class="bar" aria-hidden="true"></span>
             </button>
         </div>
     </div>
-    <div class="search-bar-container" id="search-container">
+    
+    <div class="search-bar-container" id="search-container" aria-hidden="true">
         <div class="container">
-            <input type="search" id="search-input" placeholder="Buscar no cardápio...">
-            <button class="search-close-btn" id="search-close-btn">&times;</button>
+            <input type="search" id="search-input" placeholder="Buscar no cardápio..." aria-label="Buscar no cardápio">
+            <button class="search-close-btn" id="search-close-btn" aria-label="Fechar busca">&times;</button>
         </div>
     </div>
-    <nav class="mobile-nav" aria-hidden="true">
+    
+    <nav class="mobile-nav" id="mobile-nav" aria-label="Navegação mobile" aria-hidden="true">
         <ul class="mobile-menu">
             <li><a href="index.html" class="menu__item">Início</a></li>
             <li><a href="cardapio.html" class="menu__item">Cardápio</a></li>

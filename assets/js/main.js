@@ -1,6 +1,7 @@
 /**
  * Delicious Burger - Main JavaScript
  * Modern and complete functionality for a restaurant website
+ * Fully responsive with mobile-first approach
  */
 
 // ===== DATA FETCHER =====
@@ -155,7 +156,12 @@ class NotificationSystem {
     const container = document.body;
     const notification = document.createElement('div');
     notification.className = `notification ${type}`;
-    notification.innerHTML = `<span class="notification-message">${message}</span><button class="notification-close">&times;</button>`;
+    notification.innerHTML = `
+      <div class="notification-content">
+        <span class="notification-message">${message}</span>
+        <button class="notification-close" aria-label="Fechar notificação">&times;</button>
+      </div>
+    `;
     container.appendChild(notification);
     setTimeout(() => notification.classList.add('show'), 10);
 
@@ -187,10 +193,20 @@ class CartModal {
         this.modal.innerHTML = `
             <div class="cart-modal-overlay"></div>
             <div class="cart-modal-content">
-                <div class="cart-modal-header"><h2>Seu Carrinho</h2><button class="cart-modal-close">&times;</button></div>
-                <div class="cart-modal-body"><div class="cart-items"></div></div>
+                <div class="cart-modal-header">
+                    <h2>Seu Carrinho</h2>
+                    <button class="cart-modal-close" aria-label="Fechar carrinho">&times;</button>
+                </div>
+                <div class="cart-modal-body">
+                    <div class="cart-items"></div>
+                </div>
                 <div class="cart-modal-footer">
-                    <div class="cart-total"><div class="cart-total-row"><span>Total:</span><span class="cart-total-amount">R$ 0,00</span></div></div>
+                    <div class="cart-total">
+                        <div class="cart-total-row">
+                            <span>Total:</span>
+                            <span class="cart-total-amount">R$ 0,00</span>
+                        </div>
+                    </div>
                     <button class="btn btn-secondary clear-cart-btn">Limpar Carrinho</button>
                     <button class="btn btn-primary checkout-btn">Finalizar Pedido</button>
                 </div>
@@ -206,10 +222,13 @@ class CartModal {
                 this.open();
             });
         }
+        
         this.modal.querySelector('.cart-modal-close').addEventListener('click', () => this.close());
         this.modal.querySelector('.cart-modal-overlay').addEventListener('click', () => this.close());
         this.modal.querySelector('.clear-cart-btn').addEventListener('click', () => this.clearCart());
         this.modal.querySelector('.checkout-btn').addEventListener('click', () => this.checkout());
+        
+        // Handle cart item interactions
         this.modal.querySelector('.cart-items').addEventListener('click', (e) => {
             const target = e.target;
             const itemKey = target.dataset.itemKey;
@@ -224,14 +243,36 @@ class CartModal {
             }
             this.update();
         });
+
+        // Close modal on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && this.modal.classList.contains('active')) {
+                this.close();
+            }
+        });
     }
 
-    open() { this.update(); this.modal.classList.add('active'); document.body.style.overflow = 'hidden'; }
-    close() { this.modal.classList.remove('active'); document.body.style.overflow = ''; }
+    open() { 
+        this.update(); 
+        this.modal.classList.add('active'); 
+        document.body.style.overflow = 'hidden';
+        
+        // Focus management for accessibility
+        const closeBtn = this.modal.querySelector('.cart-modal-close');
+        if (closeBtn) {
+            setTimeout(() => closeBtn.focus(), 100);
+        }
+    }
+    
+    close() { 
+        this.modal.classList.remove('active'); 
+        document.body.style.overflow = '';
+    }
 
     update() {
         const container = this.modal.querySelector('.cart-items');
         container.innerHTML = '';
+        
         if (Object.keys(this.appState.cart).length === 0) {
             container.innerHTML = `<p class="empty-cart">Seu carrinho está vazio.</p>`;
         } else {
@@ -239,22 +280,40 @@ class CartModal {
                 const itemEl = document.createElement('div');
                 itemEl.className = 'cart-item';
                 itemEl.innerHTML = `
-                    <div class="cart-item-info"><h4>${item.name}</h4><p class="cart-item-price">R$ ${item.price.toFixed(2)}</p></div>
+                    <div class="cart-item-info">
+                        <h4>${item.name}</h4>
+                        <p class="cart-item-price">R$ ${item.price.toFixed(2)}</p>
+                    </div>
                     <div class="cart-item-controls">
-                        <button class="quantity-btn-minus" data-item-key="${key}">-</button>
-                        <span>${item.quantity}</span>
-                        <button class="quantity-btn-plus" data-item-key="${key}">+</button>
-                        <button class="remove-btn" data-item-key="${key}">&times;</button>
+                        <button class="quantity-btn-minus" data-item-key="${key}" aria-label="Diminuir quantidade">-</button>
+                        <span class="quantity">${item.quantity}</span>
+                        <button class="quantity-btn-plus" data-item-key="${key}" aria-label="Aumentar quantidade">+</button>
+                        <button class="remove-btn" data-item-key="${key}" aria-label="Remover item">&times;</button>
                     </div>`;
                 container.appendChild(itemEl);
             });
         }
+        
         this.modal.querySelector('.cart-total-amount').textContent = `R$ ${this.appState.getCartTotal().toFixed(2)}`;
         this.appState.updateCartDisplay();
     }
 
-    clearCart() { if (confirm('Tem certeza?')) { this.appState.clearCart(); this.update(); } }
-    checkout() { if (Object.keys(this.appState.cart).length === 0) { NotificationSystem.show('Seu carrinho está vazio!', 'error'); return; } NotificationSystem.show('Pedido enviado com sucesso!', 'success'); this.appState.clearCart(); this.close(); }
+    clearCart() { 
+        if (confirm('Tem certeza que deseja limpar o carrinho?')) { 
+            this.appState.clearCart(); 
+            this.update(); 
+        } 
+    }
+    
+    checkout() { 
+        if (Object.keys(this.appState.cart).length === 0) { 
+            NotificationSystem.show('Seu carrinho está vazio!', 'error'); 
+            return; 
+        } 
+        NotificationSystem.show('Pedido enviado com sucesso!', 'success'); 
+        this.appState.clearCart(); 
+        this.close(); 
+    }
 }
 
 // ===== SEARCH FUNCTIONALITY =====
@@ -275,18 +334,47 @@ class MenuSearch {
         this.searchCloseBtn = document.getElementById('search-close-btn');
 
         if (this.searchOpenBtn) {
-            this.searchOpenBtn.addEventListener('click', (e) => { e.preventDefault(); this.open(); });
+            this.searchOpenBtn.addEventListener('click', (e) => { 
+                e.preventDefault(); 
+                this.open(); 
+            });
         }
+        
         if (this.searchCloseBtn) {
             this.searchCloseBtn.addEventListener('click', () => this.close());
         }
+        
         if (this.searchInput) {
             this.searchInput.addEventListener('input', this.debounce((e) => this.performSearch(e.target.value), 300));
+            
+            // Handle search on enter key
+            this.searchInput.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    this.performSearch(e.target.value);
+                }
+            });
         }
     }
 
-    open() { this.searchContainer.classList.add('active'); this.searchInput.focus(); }
-    close() { this.searchContainer.classList.remove('active'); this.searchInput.value = ''; this.renderCallback(this.appState.menuData); }
+    open() { 
+        this.searchContainer.classList.add('active'); 
+        this.searchInput.focus();
+        
+        // Close mobile menu if open
+        const mobileNav = document.querySelector('.mobile-nav');
+        const mobileToggle = document.querySelector('.mobile-menu-toggle');
+        if (mobileNav && mobileNav.classList.contains('active')) {
+            mobileNav.classList.remove('active');
+            mobileToggle.classList.remove('active');
+        }
+    }
+    
+    close() { 
+        this.searchContainer.classList.remove('active'); 
+        this.searchInput.value = ''; 
+        this.renderCallback(this.appState.menuData); 
+    }
     
     performSearch(query) {
         const normalizedQuery = query.toLowerCase().trim();
@@ -311,6 +399,79 @@ class MenuSearch {
     }
 }
 
+// ===== MOBILE MENU MANAGEMENT =====
+class MobileMenuManager {
+    constructor() {
+        this.mobileNav = null;
+        this.mobileToggle = null;
+        this.isOpen = false;
+    }
+
+    init() {
+        this.mobileNav = document.querySelector('.mobile-nav');
+        this.mobileToggle = document.querySelector('.mobile-menu-toggle');
+        
+        if (this.mobileToggle && this.mobileNav) {
+            this.mobileToggle.addEventListener('click', () => this.toggle());
+            
+            // Close menu when clicking on a link
+            const mobileLinks = this.mobileNav.querySelectorAll('.menu__item');
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => this.close());
+            });
+            
+            // Close menu when clicking outside
+            document.addEventListener('click', (e) => {
+                if (this.isOpen && 
+                    !this.mobileNav.contains(e.target) && 
+                    !this.mobileToggle.contains(e.target)) {
+                    this.close();
+                }
+            });
+            
+            // Close menu on escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && this.isOpen) {
+                    this.close();
+                }
+            });
+        }
+    }
+
+    toggle() {
+        if (this.isOpen) {
+            this.close();
+        } else {
+            this.open();
+        }
+    }
+
+    open() {
+        this.mobileNav.classList.add('active');
+        this.mobileToggle.classList.add('active');
+        this.isOpen = true;
+        document.body.style.overflow = 'hidden';
+        
+        // Focus management
+        const firstLink = this.mobileNav.querySelector('.menu__item');
+        if (firstLink) {
+            setTimeout(() => firstLink.focus(), 100);
+        }
+    }
+
+    close() {
+        this.mobileNav.classList.remove('active');
+        this.mobileToggle.classList.remove('active');
+        this.isOpen = false;
+        document.body.style.overflow = '';
+        
+        // Return focus to toggle button
+        if (this.mobileToggle) {
+            this.mobileToggle.focus();
+        }
+    }
+}
+
 // ===== FORM VALIDATOR =====
 class FormValidator {
     constructor(formElement) {
@@ -329,22 +490,79 @@ class FormValidator {
                 NotificationSystem.show('Por favor, preencha todos os campos corretamente.', 'error');
             }
         });
+        
+        // Real-time validation
+        this.inputs.forEach(input => {
+            input.addEventListener('blur', () => this.validateField(input));
+            input.addEventListener('input', () => this.clearFieldError(input));
+        });
+    }
+
+    validateField(input) {
+        const isValid = input.value.trim() !== '';
+        if (!isValid) {
+            input.style.borderColor = 'red';
+            input.setAttribute('aria-invalid', 'true');
+        } else {
+            input.style.borderColor = '#ccc';
+            input.setAttribute('aria-invalid', 'false');
+        }
+        return isValid;
+    }
+
+    clearFieldError(input) {
+        input.style.borderColor = '#ccc';
+        input.setAttribute('aria-invalid', 'false');
     }
 
     validate() {
         let isValid = true;
         this.inputs.forEach(input => {
-            if (!input.value.trim()) {
+            if (!this.validateField(input)) {
                 isValid = false;
-                input.style.borderColor = 'red';
-            } else {
-                input.style.borderColor = '#ccc';
             }
         });
         return isValid;
     }
 }
 
+// ===== TOUCH GESTURE SUPPORT =====
+class TouchGestureManager {
+    constructor() {
+        this.startX = 0;
+        this.startY = 0;
+        this.init();
+    }
+
+    init() {
+        // Swipe to close mobile menu
+        document.addEventListener('touchstart', (e) => {
+            this.startX = e.touches[0].clientX;
+            this.startY = e.touches[0].clientY;
+        });
+
+        document.addEventListener('touchend', (e) => {
+            if (!this.startX || !this.startY) return;
+
+            const endX = e.changedTouches[0].clientX;
+            const endY = e.changedTouches[0].clientY;
+            const diffX = this.startX - endX;
+            const diffY = this.startY - endY;
+
+            // Swipe left to close mobile menu
+            if (diffX > 50 && Math.abs(diffY) < 50) {
+                const mobileNav = document.querySelector('.mobile-nav');
+                if (mobileNav && mobileNav.classList.contains('active')) {
+                    const mobileMenuManager = new MobileMenuManager();
+                    mobileMenuManager.close();
+                }
+            }
+
+            this.startX = 0;
+            this.startY = 0;
+        });
+    }
+}
 
 // ===== MAIN APP LOGIC =====
 class App {
@@ -352,6 +570,8 @@ class App {
         this.appState = new AppState();
         this.cartModal = new CartModal(this.appState);
         this.menuSearch = new MenuSearch(this, (items) => this.renderMenu(items));
+        this.mobileMenuManager = new MobileMenuManager();
+        this.touchGestureManager = new TouchGestureManager();
         this.init();
     }
 
@@ -360,7 +580,7 @@ class App {
         
         this.cartModal.initEventListeners();
         this.menuSearch.init();
-        this.initMobileMenu();
+        this.mobileMenuManager.init();
 
         const contactForm = document.querySelector('.contact-form');
         if (contactForm) {
@@ -375,24 +595,39 @@ class App {
         }
 
         this.initAddToCartButtons();
+        this.initAccessibilityFeatures();
     }
     
     renderMenu(items) {
         const container = document.querySelector('.menu-grid');
         if (!container) return;
+        
         container.innerHTML = '';
+        
+        if (items.length === 0) {
+            container.innerHTML = `
+                <div class="no-results" style="grid-column: 1 / -1; text-align: center; padding: 3rem;">
+                    <h3>Nenhum item encontrado</h3>
+                    <p>Tente ajustar sua busca.</p>
+                </div>
+            `;
+            return;
+        }
+        
         items.forEach(item => {
             const itemEl = document.createElement('div');
             itemEl.className = 'menu-item-card';
             itemEl.innerHTML = `
-                <img src="${item.image}" alt="${item.name}" class="menu-item-card__image">
+                <img src="${item.image}" alt="${item.name}" class="menu-item-card__image" loading="lazy">
                 <div class="menu-item-card-content">
                     <h3 class="menu-item-card__name">${item.name}</h3>
                     <p class="menu-item-card__description">${item.description}</p>
                 </div>
                 <div class="menu-item-card-footer">
                     <span class="menu-item-card__price">R$ ${item.price.toFixed(2)}</span>
-                    <button class="btn btn-secondary add-to-cart" data-item-id="${item.id}">Pedir agora</button>
+                    <button class="btn btn-secondary add-to-cart" data-item-id="${item.id}" aria-label="Adicionar ${item.name} ao carrinho">
+                        Pedir agora
+                    </button>
                 </div>`;
             container.appendChild(itemEl);
         });
@@ -411,15 +646,54 @@ class App {
         });
     }
     
-    initMobileMenu() {
-        const toggleButton = document.querySelector('.mobile-menu-toggle');
-        const mobileNav = document.querySelector('.mobile-nav');
-        if (toggleButton && mobileNav) {
-            toggleButton.addEventListener('click', () => mobileNav.classList.toggle('active'));
+    initAccessibilityFeatures() {
+        // Skip to main content link
+        const skipLink = document.createElement('a');
+        skipLink.href = '#main-content';
+        skipLink.textContent = 'Pular para o conteúdo principal';
+        skipLink.className = 'skip-link';
+        skipLink.style.cssText = `
+            position: absolute;
+            top: -40px;
+            left: 6px;
+            background: var(--primary-color);
+            color: white;
+            padding: 8px;
+            text-decoration: none;
+            border-radius: 4px;
+            z-index: 10000;
+        `;
+        skipLink.addEventListener('focus', () => {
+            skipLink.style.top = '6px';
+        });
+        skipLink.addEventListener('blur', () => {
+            skipLink.style.top = '-40px';
+        });
+        
+        document.body.insertBefore(skipLink, document.body.firstChild);
+        
+        // Add main content id
+        const main = document.querySelector('main');
+        if (main && !main.id) {
+            main.id = 'main-content';
         }
     }
 }
 
+// Initialize app when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
     new App();
 });
+
+// Handle service worker registration
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+            .then(registration => {
+                console.log('SW registered: ', registration);
+            })
+            .catch(registrationError => {
+                console.log('SW registration failed: ', registrationError);
+            });
+    });
+}
